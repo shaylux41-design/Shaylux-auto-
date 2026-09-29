@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="أداة فحص السيارة OBD-II">
+<title>🚗 OBD-II Scanner</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>">
+</head>
+<body>
+<div class="app">
+
+    <header class="header">
+        <h1>🚗 أداة فحص السيارة</h1>
+        <p>OBD-II Live Diagnostic Scanner</p>
+        <div class="conn-status">
+            <span class="dot disconnected" id="statusDot"></span>
+            <span id="statusText">غير متصل</span>
+        </div>
+    </header>
+
+    <section class="panel">
+        <div class="conn-buttons">
+            <button class="btn btn-connect" id="connectBtn">🔗 الاتصال بجهاز ELM327</button>
+            <button class="btn btn-disconnect" id="disconnectBtn" style="display:none">🔌 قطع الاتصال</button>
+        </div>
+        <div class="info-bar" id="infoBar" style="display:none">
+            <div><strong>الجهاز:</strong> <span id="deviceName">-</span></div>
+            <div><strong>البروتوكول:</strong> <span id="protocolName">-</span></div>
+            <div><strong>VIN:</strong> <span id="vinCode">-</span></div>
+        </div>
+        <div class="browser-warning" id="browserWarning" style="display:none">
+            ⚠️ متصفحك لا يدعم Bluetooth. استخدم <strong>Chrome</strong> على أندرويد أو كمبيوتر.
+        </div>
+    </section>
+
+    <nav class="tabs" id="mainTabs" style="display:none">
+        <button class="tab active" data-tab="live">📊 بيانات حية</button>
+        <button class="tab" data-tab="dtc">⚠️ الأعطال</button>
+        <button class="tab" data-tab="sensors">🔬 حساسات</button>
+        <button class="tab" data-tab="info">ℹ️ معلومات</button>
+        <button class="tab" data-tab="log">📜 السجل</button>
+    </nav>
+
+    <section class="content active" id="live">
+        <div class="live-grid" id="liveGrid"></div>
+        <div class="actions" style="margin-top:16px">
+            <button class="btn btn-secondary" id="pauseBtn">⏸️ إيقاف مؤقت</button>
+        </div>
+    </section>
+
+    <section class="content" id="dtc">
+        <h2>⚠️ أكواد الأعطال</h2>
+        <div class="dtc-actions">
+            <button class="btn btn-primary" id="readStoredDtc">📖 الأعطال المخزنة</button>
+            <button class="btn btn-secondary" id="readPendingDtc">⏳ المعلقة</button>
+            <button class="btn btn-secondary" id="readPermDtc">🔒 الدائمة</button>
+            <button class="btn btn-danger" id="clearDtc">🗑️ مسح الأعطال</button>
+        </div>
+        <div class="dtc-result" id="dtcResult">
+            <div class="empty-state">
+                <div class="icon">🔍</div>
+                <p>اضغط على زر لقراءة أكواد الأعطال</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content" id="sensors">
+        <h2>🔬 بيانات الحساسات المتقدمة</h2>
+        <button class="btn btn-primary" id="readSensors">📊 قراءة الحساسات</button>
+        <div class="sensors-grid" id="sensorsGrid"></div>
+    </section>
+
+    <section class="content" id="info">
+        <h2>ℹ️ معلومات السيارة</h2>
+        <button class="btn btn-primary" id="readInfo">📖 قراءة المعلومات</button>
+        <div class="info-grid" id="infoGrid"></div>
+    </section>
+
+    <section class="content" id="log">
+        <h2>📜 سجل الاتصال</h2>
+        <button class="btn btn-secondary" id="clearLog">🗑️ مسح السجل</button>
+        <div class="log-box" id="logBox"></div>
+    </section>
+
+    <footer><p>🚗 OBD-II Scanner © 2025</p></footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
